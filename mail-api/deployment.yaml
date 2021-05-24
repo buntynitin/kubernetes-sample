@@ -1,0 +1,31 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: mail-api
+  name: mail-api
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: mail-api
+  template: 
+    metadata: 
+      labels: 
+        app: mail-api
+    spec: 
+      containers: 
+        - 
+          env: 
+            - 
+              name: TOPIC_NAME
+              value: "mail_topic"
+            - 
+              name: KAFKA_BROKER
+              value: "10.102.253.114"
+          image: "ncbunty/mail-api"
+          name: mail-api
+          ports: 
+            - 
+              containerPort: 5000
